@@ -1,27 +1,45 @@
 "use strict";
+const hamburger = document.getElementById("hamburger");
+const nav = document.getElementById("nav");
+const overlay = document.querySelector(".overlay");
+const navLinks = document.querySelectorAll("#nav a");
 
-const openBtn = document.querySelector('.ham-open');
-const nav = document.querySelector('.ham-nav');
-const overlay = document.querySelector('.overlay');
-const body = document.body;
+function closeMenu() {
+  hamburger.classList.remove("active");
+  nav.classList.remove("active");
+  overlay.classList.remove("active");
+  document.body.classList.remove("no-scroll");
+}
 
-openBtn.addEventListener('click', () => {
-    const isActive = nav.classList.toggle('active');
-    overlay.classList.toggle('active');
-    openBtn.classList.toggle('active');
-
-    if (isActive) {
-        // メニューを開いたとき
-        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-        body.style.overflow = 'hidden';
-        body.style.paddingRight = `${scrollbarWidth}px`;
-    } else {
-        // メニューを閉じたとき
-        body.style.overflow = '';
-        body.style.paddingRight = '';
-    }
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
+  nav.classList.toggle("active");
+  overlay.classList.toggle("active");
+  document.body.classList.toggle("no-scroll");
 });
 
+/* メニューリンククリック */
+navLinks.forEach(link => {
+  link.addEventListener("click", function (e) {
+    e.preventDefault(); // ← 先に止める
+
+    const targetId = this.getAttribute("href");
+    const target = document.querySelector(targetId);
+
+    closeMenu(); // ← 先に閉じる
+
+    setTimeout(() => {
+      target.scrollIntoView({
+        behavior: "smooth"
+      });
+    }, 300); // ← 閉じるアニメ後に移動
+  });
+});
+
+/* 背景クリック */
+overlay.addEventListener("click", () => {
+  closeMenu();
+});
 //マウスストーカー
 const stalker = document.getElementById('mouse-stalker');
 let hovFlag = false;
@@ -41,32 +59,6 @@ for (let i = 0; i < linkElem.length; i++) {
         stalker.classList.remove('is_active');
     });
 }
-
-// //フェードイン
-// window.addEventListener('pageshow', () => {
-//   document.body.classList.remove('is-hide');
-//   document.body.classList.add('is-show');
-// });
-
-// //フェードアウト
-// document.addEventListener('click', (e) => {
-//   const link = e.target.closest('a');
-
-//   if (!link) return;
-//   if (link.target === '_blank') return;
-
-//   const href = link.getAttribute('href');
-//   if (!href || href.startsWith('#')) return;
-
-//   e.preventDefault();
-
-//   document.body.classList.remove('is-show');
-//   document.body.classList.add('is-hide');
-
-//   setTimeout(() => {
-//     window.location.href = link.href;
-//   }, 450);
-// });
 
 // フェードイン
 window.addEventListener('pageshow', () => {
@@ -95,7 +87,7 @@ document.addEventListener('click', e => {
   ) {
     return;
   }
-
+//今回は下の方がいいのかも？？
   // フェード開始
   console.log("fade out start");
   e.preventDefault();
@@ -108,34 +100,35 @@ document.addEventListener('click', e => {
   }, 450);
 });
 
+document.addEventListener('click', e => {
+  const link = e.target.closest('a');
+  if (!link) return;
 
-// //フェードインフェードアウト
-// window.addEventListener('DOMContentLoaded', () => {
-//   document.body.classList.add('is-show');
-// });
+  const href = link.getAttribute('href');
+  if (!href) return;
 
-// const links = document.querySelectorAll('a:not([target="_blank"])');
+  /* ハンバーガーメニュー内リンクは除外 */
+  if (
+    link.closest("#nav") ||
+    (link.hash && link.pathname === location.pathname)
+  ) {
+    return;
+  }
 
-// links.forEach(link => {
-//   link.addEventListener('click', e => {
+  if (
+    link.target === '_blank' ||
+    href.startsWith('tel:') ||
+    href.startsWith('mailto:')
+  ) {
+    return;
+  }
 
-//     const href = link.getAttribute('href');
+  e.preventDefault();
 
-//     /* ページ内リンク除外 */
-//     if (href.startsWith('#')) return;
+  document.body.classList.remove('is-show');
+  document.body.classList.add('is-hide');
 
-//     e.preventDefault();
-//     const url = link.href;
-
-//     document.body.classList.remove('is-show');
-//     document.body.classList.add('is-hide');
-
-//     setTimeout(() => {
-//       window.location.href = url;
-//     }, 450);
-//   });
-// });
-// window.addEventListener('pageshow', () => {
-//   document.body.classList.remove('is-hide');
-//   document.body.classList.add('is-show');
-// });
+  setTimeout(() => {
+    window.location.href = link.href;
+  }, 450);
+});
