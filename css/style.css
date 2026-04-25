@@ -142,13 +142,35 @@ img{
 	margin: 0 auto;
 }
 
+/* ハンバーガー（PCでは非表示） */
+.hamburger {
+  display: none;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 200;
+}
+
+.hamburger span {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: #434343;
+  margin: 6px auto;
+  transition: 0.3s;
+}
+
+
 /*---------------nav---------------*/
 /*ナビ 位置*/
 .header{
   position: fixed;
   top: 20px;
   right: 40px;
-  z-index: 100;
+  z-index: 9999;
 }
 .nav{
 	position: relative;
@@ -315,7 +337,7 @@ img{
   content: "";
   position: absolute;
   top: 60%;
-  right: right: clamp(-80px, -8vw, -150px);
+  right: clamp(-80px, -8vw, -150px);
   width: 307px;
   height: 307px;
   background: radial-gradient(
@@ -649,9 +671,9 @@ img{
   color: #434343;
 }
 
-/*=====================*/
-/*tablet*/
-/*=====================*/
+/*=====================
+レスポンシブ
+=====================*/
 
 @media (max-width: 768px) {
   /*写真アニメーション*/
@@ -675,7 +697,6 @@ img{
   }
 
   /*fixed系は非表示*/
-  .header,
   .vertical {
     display: none;
   }
@@ -701,21 +722,27 @@ img{
     font-size: clamp(12px, 2.8vw, 14px);
   }
   .text{
-    padding-top: 20px;
+    padding: 10px 0;
   }
+  .text > *{
+  margin-bottom: -7px;
+}
+.text > *:last-child{
+  margin-bottom: 0;
+}
   .text::before {
     width: 220px;
     height: 220px;
-    left: 90%;
-    top: 50px;
+    left: 100%;
+    top: 70px;
     transform: translateX(-50%);
   }
 
   .text::after {
     width: 200px;
     height: 200px;
-    top: -65px;
-    left: 5%;
+    top: -15px;
+    left: 0%;
     transform: translateX(-50%);
   }
 
@@ -762,7 +789,7 @@ img{
   }
 
 .work-image{
-  height: 400px;
+  height: 280px;
   overflow-y: scroll;
 }
   .work-title {
@@ -780,19 +807,39 @@ img{
     line-height: 1.8;
   }
 
-  .work-text::before,
-  .work-item.reverse::after {
-    width: 200px;
-    height: 200px;
-    opacity: 0.7;
-  }
-
   .work-text::before {
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%);
-  }
+  content: "";
+  position: absolute;
+  top: 30px;
+  left: 10px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(
+    circle,
+    rgba(179, 255, 167, 0.2),
+    transparent 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+}
 
+.work-item:nth-child(even) .work-text::after {
+  content: "";
+  position: absolute;
+  top: -150px;
+  left: 250px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(
+    circle,
+    rgba(232, 117, 186, 0.2),
+    transparent 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+}
    .profile {
     padding: 100px 0;
   }
@@ -852,11 +899,125 @@ img{
   .footer-icon img {
     width: 90px;
   }
+
+  .vertical {
+    display: none;
+  }
+
+  .header {
+    display: block;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999;
+  }
+
+  /* ハンバーガー表示 */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 52px;
+    height: 52px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: #434343;
+    margin: 4px 0;
+    transition: 0.35s ease;
+  }
+
+  /* nav初期状態（閉じてる） */
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background: rgba(255,255,254,0.97);
+    backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 36px;
+    padding: 0px 40px;
+    transition: right 0.4s ease;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.06);
+    z-index: 998;
+  }
+
+  /* 開いた時 */
+  .nav.active {
+    right: 0;
+  }
+
+/*開いている間は背景を暗く*/
+.overlay{
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  z-index: 997;
+}
+.overlay.active{
+  opacity: 1;
+  visibility: visible;
+}
+/*スクロールできなくする*/
+.no-scroll{
+  overflow: hidden;
 }
 
-  /* × に変化 */
+/* 表示時 */
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+  /* 黄色背景はスマホでは消す */
+  .nav::before {
+    display: none;
+  }
+
+  .nav-item {
+    font-size: 18px;
+    transform: none;
+  }
+
+  .nav-main {
+    font-size: 22px;
+  }
+
+  .title-sub {
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  /* hoverずれ防止 */
+  .nav-item:hover {
+    transform: none;
+  }
+
+  .nav-item::after {
+    bottom: -8px;
+  }
+
   .hamburger.active span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
+    transform: translateY(9px) rotate(45deg);
   }
 
   .hamburger.active span:nth-child(2) {
@@ -864,27 +1025,6 @@ img{
   }
 
   .hamburger.active span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
+    transform: translateY(-9px) rotate(-45deg);
   }
-}
-
-/* ハンバーガー（PCでは非表示） */
-.hamburger {
-  display: none;
-  width: 40px;
-  height: 40px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  z-index: 200;
-}
-
-.hamburger span {
-  display: block;
-  width: 28px;
-  height: 2px;
-  background: #434343;
-  margin: 6px auto;
-  transition: 0.3s;
 }
