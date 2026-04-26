@@ -74,16 +74,15 @@ table {
     left 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   transition-timing-function: ease-out;
   z-index: 9999;  
-
-  &.is_active {
-    top: -40px; 
-    left: -40px;
-    width: 100px;
-    height: 100px;
-    transition: 0.2s;
-  }
 }
 
+ .mouse-stalker.is_active {
+  top: -40px;
+  left: -40px;
+  width: 100px;
+  height: 100px;
+  transition: 0.2s;
+}
 /*ホバー時*/
 .stalker.is_active {
   transform: scale(2);
