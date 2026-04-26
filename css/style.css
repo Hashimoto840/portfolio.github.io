@@ -185,6 +185,7 @@ img{
   margin-bottom: -5px;
   font-family: 'Titillium Web',sans-serif;
   font-weight: 200;
+  color: #d88;
 }
 /*ナビ文字*/
 .nav-main{
@@ -369,8 +370,8 @@ img{
   content: "";
   position: absolute;
   left: 0;
-  bottom: -12px;
-  width: 120px;
+  bottom: -10px;
+  width: 100%;
   height: 1px;
   background: #bdbdbd;
 }
@@ -598,6 +599,7 @@ img{
   font-size: 28px;
   font-family: 'Titillium Web', sans-serif;
   font-weight: 200;
+  color: #d88;
 }
 
 .profile-birth {
@@ -671,6 +673,167 @@ img{
   color: #434343;
 }
 
+/*-----skills/strengths-------*/
+.profile-more{
+  padding-top: 120px;
+}
+.profile-image-more img{
+  border-radius: 30px;
+}
+.skills,
+.strengths {
+  position: relative;
+}
+
+/* 各ブロック */
+.skill-item,
+.strength-item {
+  margin-bottom: 100px;
+  position: relative;
+}
+
+.skill-item:last-child,
+.strength-item:last-child {
+  margin-bottom: 0;
+}
+
+/* 背景のふんわり装飾 */
+.skill-item::before,
+.strength-item:nth-child(even)::before {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(179, 255, 167, 0.18),
+    transparent 70%
+  );
+  top: -60px;
+  left: -80px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.skill-item:nth-child(even)::after,
+.strength-item:nth-child(odd)::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(232, 117, 186, 0.16),
+    transparent 70%
+  );
+  right: 0;
+  top: 20px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* タイトル */
+.skill-title {
+  font-size: 28px;
+  margin-bottom: 10px;
+  position: relative;
+  display: inline-block;
+}
+
+/* 本文 */
+.skill-text {
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+.container ul{
+  margin-left: 30px;
+}
+.container ul li{
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+.container ul li strong{
+  color: #d88;
+  font-weight: 600;
+  font-size: 20px;
+  font-family: 'Titillium Web',sans-serif;
+}
+.skill-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+}
+.skill-content{
+  flex: 1;
+}
+.skill-img{
+  max-width: 300px;
+  flex-shrink: 0;
+  margin-right: 100px;
+}
+.strengths {
+  margin-bottom: 120px;
+}
+/*=====================
+responsive
+=====================*/
+
+@media (max-width: 768px) {
+
+  .skills,
+  .strengths {
+    padding: 0px 0;
+  }
+
+  .skill-item,
+  .strength-item {
+    margin-bottom: 70px;
+  }
+
+  .skill-title {
+    font-size: 22px;
+  }
+
+  .skill-text {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+
+  .skill-item::before,
+  .skill-item::after,
+  .strength-item::before,
+  .strength-item::after {
+    width: 180px;
+    height: 180px;
+  }
+  .skill-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .skill-img {
+    margin-right: 0;
+    margin: 0 auto;
+    max-width: 240px;
+  }
+  .container ul{
+  margin-left: 0px;
+}
+.profile-more{
+  padding-top: 120px;
+}
+.strengths{
+  padding-bottom: 120px;
+}
+}
+
+
+
+
 /*=====================
 レスポンシブ
 =====================*/
@@ -686,6 +849,9 @@ img{
     height: clamp(110px, 28vw, 180px);
   }
  /*全体*/
+ .mouse-stalker{
+  display: none;
+ }
   html,
   body {
     overflow-x: hidden;
@@ -1027,4 +1193,48 @@ img{
   .hamburger.active span:nth-child(3) {
     transform: translateY(-9px) rotate(-45deg);
   }
+/*profile*/
+   .skills,
+  .strengths {
+    padding: 0;
+  }
+
+  .skill-item,
+  .strength-item {
+    margin-bottom: 70px;
+  }
+
+  .skill-title {
+    font-size: 22px;
+  }
+
+  .skill-text {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+
+  .skill-item::before,
+  .skill-item::after,
+  .strength-item::before,
+  .strength-item::after {
+    width: 180px;
+    height: 180px;
+  }
+  .skill-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .skill-img {
+    margin-right: 0;
+    margin: 0 auto;
+    max-width: 240px;
+  }
+  .container ul{
+  margin-left: 0px;
+}
+.profile-more{
+  padding-top: 120px;
+}
 }
