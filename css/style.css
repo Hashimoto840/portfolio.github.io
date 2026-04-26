@@ -785,6 +785,7 @@ img{
   align-items: center;
   justify-content: space-between;
   height: 100vh;
+  gap: 80px;
 }
 .work-hero-movie{
   display: flex;
