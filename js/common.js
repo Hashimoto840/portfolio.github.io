@@ -22,18 +22,24 @@ hamburger.addEventListener("click", () => {
 /* メニューリンククリック */
 navLinks.forEach(link => {
   link.addEventListener("click", function (e) {
-    e.preventDefault(); // ← 先に止める
+    const href = this.getAttribute("href");
 
-    const targetId = this.getAttribute("href");
-    const target = document.querySelector(targetId);
+    // 同ページ内リンクだけJSで処理
+    if (href.startsWith("#")) {
+      e.preventDefault();
 
-    closeMenu(); // ← 先に閉じる
+      const target = document.querySelector(href);
 
-    setTimeout(() => {
-      target.scrollIntoView({
-        behavior: "smooth"
-      });
-    }, 300); // ← 閉じるアニメ後に移動
+      if (!target) return;
+
+      closeMenu();
+
+      setTimeout(() => {
+        target.scrollIntoView({
+          behavior: "smooth"
+        });
+      }, 300);
+    }
   });
 });
 
