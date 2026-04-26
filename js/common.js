@@ -1,5 +1,7 @@
 "use strict";
-//ハンバーガーメニュー
+"use strict";
+
+// ハンバーガーメニュー
 const hamburger = document.getElementById("hamburger");
 const nav = document.getElementById("nav");
 const overlay = document.querySelector(".overlay");
@@ -12,11 +14,22 @@ function closeMenu() {
   document.body.classList.remove("no-scroll");
 }
 
-hamburger.addEventListener("click", () => {
-  hamburger.classList.toggle("active");
-  nav.classList.toggle("active");
-  overlay.classList.toggle("active");
-  document.body.classList.toggle("no-scroll");
+function openMenu() {
+  hamburger.classList.add("active");
+  nav.classList.add("active");
+  overlay.classList.add("active");
+  document.body.classList.add("no-scroll");
+}
+
+/* ハンバーガー開閉 */
+hamburger.addEventListener("click", (e) => {
+  e.stopPropagation();
+
+  if (nav.classList.contains("active")) {
+    closeMenu();
+  } else {
+    openMenu();
+  }
 });
 
 /* メニューリンククリック */
@@ -24,26 +37,27 @@ navLinks.forEach(link => {
   link.addEventListener("click", function (e) {
     const href = this.getAttribute("href");
 
-    // 同ページ内リンクだけJSで処理
+    // まず確実に閉じる
+    closeMenu();
+
+    // 同ページ内スクロールだけJS制御
     if (href.startsWith("#")) {
       e.preventDefault();
 
       const target = document.querySelector(href);
-
       if (!target) return;
 
-      closeMenu();
-
       setTimeout(() => {
-        target.scrollIntoView({
+        window.scrollTo({
+          top: target.offsetTop,
           behavior: "smooth"
         });
-      }, 300);
+      }, 350);
     }
   });
 });
 
-/* 背景クリック */
+/* overlayクリックで閉じる */
 overlay.addEventListener("click", () => {
   closeMenu();
 });
