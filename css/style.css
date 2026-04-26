@@ -788,19 +788,29 @@ img{
   justify-content: space-between;
   height: 100vh;
 }
-
-.work-hero-text {
-  width: 35%;
+.work-hero-movie{
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  gap: clamp(24px, 4vw, 80px);
+  min-height: 100vh;
+}
+.work-hero-movie
+.work-movie-more{
+  flex: 1 1 55%;
+  min-width: 280px;
 }
 
-.work-title {
-  font-size: clamp(32px, 4vw, 48px);
+.work-hero-text{
+  flex: 1 1 40%;
+  min-width: 280px;
 }
 
-.work-text {
+.work-title-more{
+  font-size: clamp(32px, 4vw, 44px);
+}
+
+.work-text-more{
   font-size: 16px;
   line-height: 2;
 }
@@ -814,7 +824,9 @@ img{
   z-index: 9999;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 }
-
+.work-movie-more{
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
 /* 画像 */
 .work-hero-image img {
   width: 100%;
@@ -864,6 +876,11 @@ img{
   border-top: 1px solid #d8d8d8;
   margin-top: 120px;
 }
+.detail-list-movie{
+  max-width: 900px;
+  margin: 0 auto;
+  border-top: 1px solid #d8d8d8;
+}
 
 .detail-row {
   display: grid;
@@ -907,7 +924,9 @@ img{
   max-width: 1280px;
   margin: 120px auto;
 }
-
+.movie-detail{
+  margin-bottom: 120px;
+}
 .design-comp img {
   width: 100%;
   display: block;
@@ -918,12 +937,168 @@ img{
   flex-direction: column;
   gap: 16px;
 }
-
+.work-category .thin {
+  font-weight: 300;
+}
 
 /*=====================
 レスポンシブ
 =====================*/
+@media (max-width: 1195px){
 
+  /* ハンバーガー表示 */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 52px;
+    height: 52px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: #434343;
+    margin: 4px 0;
+    transition: 0.35s ease;
+  }
+
+  /* nav初期状態（閉じてる） */
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background: rgba(255,255,254,0.97);
+    backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 36px;
+    padding: 0px 40px;
+    transition: right 0.4s ease;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.06);
+    z-index: 998;
+  }
+
+  /* 開いた時 */
+  .nav.active {
+    right: 0;
+  }
+
+/*開いている間は背景を暗く*/
+.overlay{
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  z-index: 997;
+}
+.overlay.active{
+  opacity: 1;
+  visibility: visible;
+}
+/*スクロールできなくする*/
+.no-scroll{
+  overflow: hidden;
+}
+
+/* 表示時 */
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+  /* 黄色背景はスマホでは消す */
+  .nav::before {
+    display: none;
+  }
+
+  .nav-item {
+    font-size: 18px;
+    transform: none;
+  }
+
+  .nav-main {
+    font-size: 22px;
+  }
+
+  .title-sub {
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  /* hoverずれ防止 */
+  .nav-item:hover {
+    transform: none;
+  }
+
+  .nav-item::after {
+    bottom: -8px;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+.work-hero {
+    height: auto;
+    min-height: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 40px;
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+  .work-hero-image {
+   width: 65%;
+    height:60vh;
+    margin: 0 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .work-hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+.work-hero-movie{
+    height: auto;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 40px;
+    padding-top: 90px;
+    padding-bottom: 60px;
+}
+
+} 
 @media (max-width: 850px) {
   /*写真アニメーション*/
   .bg-slider-inner {
@@ -1164,121 +1339,6 @@ img{
     z-index: 999;
   }
 
-  /* ハンバーガー表示 */
-  .hamburger {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 52px;
-    height: 52px;
-    background: rgba(255,255,255,0.9);
-    border-radius: 50%;
-    border: 1px solid rgba(0,0,0,0.05);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    backdrop-filter: blur(8px);
-    z-index: 10000;
-  }
-
-  .hamburger span {
-    display: block;
-    width: 24px;
-    height: 1px;
-    background: #434343;
-    margin: 4px 0;
-    transition: 0.35s ease;
-  }
-
-  /* nav初期状態（閉じてる） */
-  .nav {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 80%;
-    max-width: 320px;
-    height: 100vh;
-    background: rgba(255,255,254,0.97);
-    backdrop-filter: blur(12px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 36px;
-    padding: 0px 40px;
-    transition: right 0.4s ease;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.06);
-    z-index: 998;
-  }
-
-  /* 開いた時 */
-  .nav.active {
-    right: 0;
-  }
-
-/*開いている間は背景を暗く*/
-.overlay{
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s ease;
-  z-index: 997;
-}
-.overlay.active{
-  opacity: 1;
-  visibility: visible;
-}
-/*スクロールできなくする*/
-.no-scroll{
-  overflow: hidden;
-}
-
-/* 表示時 */
-.menu-overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-  /* 黄色背景はスマホでは消す */
-  .nav::before {
-    display: none;
-  }
-
-  .nav-item {
-    font-size: 18px;
-    transform: none;
-  }
-
-  .nav-main {
-    font-size: 22px;
-  }
-
-  .title-sub {
-    font-size: 12px;
-    margin-bottom: 4px;
-  }
-
-  /* hoverずれ防止 */
-  .nav-item:hover {
-    transform: none;
-  }
-
-  .nav-item::after {
-    bottom: -8px;
-  }
-
-  .hamburger.active span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-  }
-
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .hamburger.active span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
-  }
 /*profile*/
    .skills,
   .strengths {
@@ -1338,7 +1398,17 @@ img{
     padding-top: 100px;
     padding-bottom: 40px;
   }
-
+.work-hero-movie{
+    height: auto;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 40px;
+    padding-top: 100px;
+    padding-bottom: 40px;
+}
   .work-hero-text {
     width: 100%;
     text-align: left;
@@ -1358,12 +1428,12 @@ img{
     display: block;
   }
 
-  .work-title {
+  .work-title-more{
     font-size: clamp(24px, 6vw, 32px);
     margin-bottom: 20px;
   }
 
-  .work-text {
+  .work-text-more{
     font-size: 14px;
     line-height: 2;
   }
@@ -1397,7 +1467,10 @@ img{
     width: 100%;
     margin-top: 60px;
   }
-
+.detail-list-movie{
+    width: 100%;
+    margin-top: 60px;
+  }
   .detail-row {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -1408,6 +1481,10 @@ img{
     margin: 60px auto;
     max-width: 100%;
   }
+ .movie-detail{
+  margin-bottom: 60px;
+  width: 100%;
+}
   .schedule {
   display: flex;
   flex-direction: column;
