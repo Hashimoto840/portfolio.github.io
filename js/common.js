@@ -66,11 +66,11 @@ overlay.addEventListener("click", () => {
 const stalker = document.getElementById("mouse-stalker");
 
 if (stalker) {
-  window.addEventListener("pointermove", function (e) {
+  window.addEventListener("mousemove", function (e) {
     stalker.style.transform =
       "translate(" + e.clientX + "px, " + e.clientY + "px)";
   });
-
+}
   const linkElem = document.querySelectorAll("a:not(.no_stick_)");
 
   for (let i = 0; i < linkElem.length; i++) {
