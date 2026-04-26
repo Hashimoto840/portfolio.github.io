@@ -1,7 +1,5 @@
 "use strict";
-"use strict";
-
-// ハンバーガーメニュー
+//ハンバーガーメニュー
 const hamburger = document.getElementById("hamburger");
 const nav = document.getElementById("nav");
 const overlay = document.querySelector(".overlay");
@@ -14,22 +12,11 @@ function closeMenu() {
   document.body.classList.remove("no-scroll");
 }
 
-function openMenu() {
-  hamburger.classList.add("active");
-  nav.classList.add("active");
-  overlay.classList.add("active");
-  document.body.classList.add("no-scroll");
-}
-
-/* ハンバーガー開閉 */
-hamburger.addEventListener("click", (e) => {
-  e.stopPropagation();
-
-  if (nav.classList.contains("active")) {
-    closeMenu();
-  } else {
-    openMenu();
-  }
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
+  nav.classList.toggle("active");
+  overlay.classList.toggle("active");
+  document.body.classList.toggle("no-scroll");
 });
 
 /* メニューリンククリック */
@@ -37,10 +24,10 @@ navLinks.forEach(link => {
   link.addEventListener("click", function (e) {
     const href = this.getAttribute("href");
 
-    // まず確実に閉じる
+    // まず絶対閉じる
     closeMenu();
 
-    // 同ページ内スクロールだけJS制御
+    // #から始まる → 同ページスクロール
     if (href.startsWith("#")) {
       e.preventDefault();
 
@@ -52,36 +39,36 @@ navLinks.forEach(link => {
           top: target.offsetTop,
           behavior: "smooth"
         });
-      }, 350);
+      }, 300);
     }
+
+    // index.html#works は通常遷移させる
   });
 });
 
-/* overlayクリックで閉じる */
+/* 背景クリック */
 overlay.addEventListener("click", () => {
   closeMenu();
 });
 
 //マウスストーカー
-const stalker = document.getElementById("mouse-stalker");
+const stalker = document.getElementById('mouse-stalker');
+let hovFlag = false;
 
-if (stalker) {
-  window.addEventListener("mousemove", function (e) {
-    stalker.style.transform =
-      "translate(" + e.clientX + "px, " + e.clientY + "px)";
-  });
-}
-  const linkElem = document.querySelectorAll("a:not(.no_stick_)");
+window.addEventListener('pointermove', function (e) {
+    stalker.style.transform = 'translate(' + e.clientX + 'px, ' + e.clientY + 'px)';
+});
 
-  for (let i = 0; i < linkElem.length; i++) {
-    linkElem[i].addEventListener("mouseover", function () {
-      stalker.classList.add("is_active");
+const linkElem = document.querySelectorAll('a:not(.no_stick_)');
+for (let i = 0; i < linkElem.length; i++) {
+    linkElem[i].addEventListener('mouseover', function (e) {
+        hovFlag = true;
+        stalker.classList.add('is_active');
     });
-
-    linkElem[i].addEventListener("mouseout", function () {
-      stalker.classList.remove("is_active");
+    linkElem[i].addEventListener('mouseout', function (e) {
+        hovFlag = false;
+        stalker.classList.remove('is_active');
     });
-  }
 }
 
 //フェード
