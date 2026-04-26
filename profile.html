@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>はしもとゆいのポートフォリオ</title>
+	<!--IEの互換防止-->
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<!--携帯電話リンク防止-->
+	<meta name="format-detection" content="telephone=no">
+	<!--CSS読み込み-->
+	<link rel="stylesheet" href="css/style.css">
+	<!--JS読み込み-->
+	<script src="js/common.js" defer></script>
+	<!--AOSJS-->
+   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<!--Google fontからfont読み込み-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rammetto+One&family=Titillium+Web:ital,wght@0,200;0,300;1,200&family=Zen+Maru+Gothic:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="wrap">
+		<header class="header">
+
+			<button class="hamburger" id="hamburger">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+
+			<nav id="nav" class="nav">
+				<a href="index.html#top" class="nav-item">
+					<span class="title-sub">Home</span>
+					<span class="nav-main">さいしょのページ</span>
+				</a>
+				<a href="#works" class="nav-item">
+					<span class="title-sub">Design</span>
+					<span class="nav-main">つくったもの</span>
+				</a>
+				<a href="profile.html" class="nav-item">
+					<span class="title-sub">Profile</span>
+					<span class="nav-main">わたしについて</span>	
+				</a>
+			</nav>
+			<div class="overlay"></div>
+		</header>
+
+		<main class="main">
+			<a href="#top" class="vertical">トップにもどる</a>
+			<!--profile section-->
+			<section id="profile" class="profile-more inner">
+				<div class="profile-head" data-aos="fade-up">
+					<span class="title-sub">Profile</span>
+					<h2 class="section-title">わたしについて</h2>
+				</div>
+
+				<div class="profile-area" data-aos="fade-up">
+					<div class="profile-image-more">
+						<img src="img/profile.jpg" alt="はしもとゆい">
+					</div>
+					<div class="profile-text">
+						<h3 class="profile-name">
+							はしもと　ゆい<br>
+							<span>Hashimoto Yui</span>
+						</h3>
+
+						<p class="profile-birth">
+							1998.06.15生まれ 27歳
+						</p>
+
+						<p class="profile-description">
+							建設機械のレンタルサービス業界にて営業事務として勤務する中で、以前より興味のあったWebデザインの分野へ進むことを決意しました。<br>
+							幼い頃からものづくりが好きで、ポスターや遠足のしおり制作を心から楽しんでいました。
+							これらの経験が、情報を五感に訴えることができるデザインへの関心へとつながっています。<br>
+							現在はWebデザインについて学びながら、動画作成やイラスト制作にも力を入れています。
+							前職で培った提案力、そして動画制作やプレゼンで培った表現力を活かし、「誰かの人生をより豊かにするデザイン」を届けられるWebデザイナーを目指しています。
+						</p>
+					</div>
+				</div>
+			</section>
+			<section class="profile-more skills inner">
+				<div class="profile-head" data-aos="fade-up">
+					<span class="title-sub">Available Skills</span>
+					<h2 class="section-title">できること</h2>
+				</div>
+
+				<div class="skill-item" data-aos="fade-up">
+					<div class="skill-content">
+						<h3 class="skill-title">デザイン</h3>
+
+						<p class="skill-text">
+							Webサイトのデザインを制作することができます。<br>
+							ジャンルにとらわれず、様々なテイストのデザインを制作します。<br>
+							ユーザーに負荷がかからないような、わかりやすいデザインを心がけています。<br>
+							足りないパーツをイラストで補うことも可能です。
+						</p>
+						<div class="container">
+						        <ul>
+									<li>
+										<strong>Illustrator</strong><br>
+										チラシ・名刺・イラスト・ロゴ・バナーなどの制作ができます
+									</li>
+									<li>
+										<strong>Photoshop</strong><br>
+										画像の補正、切り抜きなど簡単な写真加工ができます
+									</li>
+									<li>
+										<strong>Figma</strong><br>
+										Webデザイン制作に使用しています。<br>
+										簡単な動きをつけたデザインカンプの制作ができます
+									</li>
+									<li>
+										<strong>ibisPaint X</strong><br>
+										イラスト・ロゴの制作ができます
+									</li>
+								</ul>
+							</div>
+						</div>
+						<img src="img/design.png" alt="デザインする女の子" class="skill-img">
+				</div>
+
+				<div class="skill-item" data-aos="fade-up">
+					<div class="skill-content">
+						<h3 class="skill-title">コーディング</h3>
+
+						<p class="skill-text">
+							HTML/CSSを用いて、デザインカンプを忠実に再現することができます。<br>
+							また、JavaScriptを用いて動きをつけることも可能です。<br>
+							疑問点はAIを活用しながら試行錯誤して進めています。<br>
+							誰が見てもわかりやすいコードを書くことを心がけています。
+						</p>
+						<div class="container">
+						    <ul>
+								<li>
+									<strong>HTML / CSS</strong><br>
+									わかりやすいコーディングを行うことができます。<br>
+									エディターはSublime Textを使用しています
+								</li>
+								<li>
+									<strong>JavaScript</strong><br>
+									簡単な動きを加えることができます
+								</li>
+							</ul>
+						</div>
+					</div>
+						<img src="img/pc.png" alt="コードを書く女の子" class="skill-img">
+				</div>
+			</section>
+
+
+			<!-- Strengths -->
+			<section class="profile-more strengths inner ">
+				<div class="profile-head" data-aos="fade-up">
+					<span class="title-sub">Strengths</span>
+					<h2 class="section-title">わたしの強み</h2>
+				</div>
+
+				<div class="strength-item" data-aos="fade-up">
+					<h3 class="skill-title">いつも和やか</h3>
+					<p class="skill-text">
+						和やかな雰囲気づくりを大切にし、周囲が安心して意見を出せる環境を心がけています。<br>
+						学生時代は放送部に全力を注ぎ、皆の意見を取り入れた作品で
+						NHK全国大会2位を獲得しました。<br>
+						ひとりでは難しいことも、チームの力で実現できると実感しました。
+					</p>
+				</div>
+
+				<div class="strength-item" data-aos="fade-up">
+					<h3 class="skill-title">企画力がある</h3>
+					<p class="skill-text">
+						大学サークルの合宿や忘年会など、
+						10〜20人程度で楽しめるイベントを企画してきました。<br>
+						人を集めて段取りをすることが得意です。<br>
+						ひとりで全体を引っ張るのではなく、
+						周囲の要望を取り入れながら実現していきます。
+					</p>
+				</div>
+
+				<div class="strength-item" data-aos="fade-up">
+					<h3 class="skill-title">ニーズを汲み取る力</h3>
+					<p class="skill-text">
+						プレゼント選びが好きで、
+						その人が喜ぶものを覚えているとよく褒めていただけます。<br>
+						特に女性へ贈り物をする機会が多く、
+						化粧品検定1級を取得しました。<br>
+						この力は会社でのプレゼンや資料作成にも役立っていると感じます。
+					</p>
+				</div>
+			</section>
+		</main>
+
+		<!--footer-->
+		<footer class="footer">
+			<p class="footer-message">
+				Thanks for checking it out.
+			</p>
+
+			<div class="footer-icon">
+				<img src="img/inu-huwahuwa.png" alt="footer icon">
+			</div>
+
+			<p class="copyright">
+			  © 2026 Yui Hashimoto
+			</p>
+		</footer>
+	</div>
+
+		<!--js-->
+			<div id="mouse-stalker" class="mouse-stalker"></div>
+		    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		    <script>
+			     AOS.init();
+		    </script>
+</body>
+</html>
+
