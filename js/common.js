@@ -1,23 +1,5 @@
 "use strict";
-(function () {
-    var container = document.querySelector('.container');
-    if (!container) return;
-    var button = container.querySelector('.btn-box button');
-    var content = container.querySelector('.more');
-    
-    if (button && content) {
-        button.addEventListener('click', function() {
-            content.classList.toggle('appear');
-            
-            if (content.classList.contains('appear')) {
-                this.textContent = this.dataset.openText || 'Close';
-            } else {
-                this.textContent = this.dataset.defaultText;
-            }
-        });
-    }
-})();
-
+//ハンバーガーメニュー
 const hamburger = document.getElementById("hamburger");
 const nav = document.getElementById("nav");
 const overlay = document.querySelector(".overlay");
@@ -80,48 +62,36 @@ for (let i = 0; i < linkElem.length; i++) {
     });
 }
 
-//今回は下の方がいいのかも？？
-  // フェード開始
-  console.log("fade out start");
-  e.preventDefault();
+//フェード
+// document.addEventListener('click', e => {
+//   const link = e.target.closest('a');
+//   if (!link) return;
 
-  document.body.classList.remove('is-show');
-  document.body.classList.add('is-hide');
+//   const href = link.getAttribute('href');
+//   if (!href) return;
 
-  setTimeout(() => {
-    window.location.href = link.href;
-  }, 450);
-});
+//   /* ハンバーガーメニュー内リンクは除外 */
+//   if (
+//     link.closest("#nav") ||
+//     (link.hash && link.pathname === location.pathname)
+//   ) {
+//     return;
+//   }
 
-document.addEventListener('click', e => {
-  const link = e.target.closest('a');
-  if (!link) return;
+//   if (
+//     link.target === '_blank' ||
+//     href.startsWith('tel:') ||
+//     href.startsWith('mailto:')
+//   ) {
+//     return;
+//   }
 
-  const href = link.getAttribute('href');
-  if (!href) return;
+//   e.preventDefault();
 
-  /* ハンバーガーメニュー内リンクは除外 */
-  if (
-    link.closest("#nav") ||
-    (link.hash && link.pathname === location.pathname)
-  ) {
-    return;
-  }
+//   document.body.classList.remove('is-show');
+//   document.body.classList.add('is-hide');
 
-  if (
-    link.target === '_blank' ||
-    href.startsWith('tel:') ||
-    href.startsWith('mailto:')
-  ) {
-    return;
-  }
-
-  e.preventDefault();
-
-  document.body.classList.remove('is-show');
-  document.body.classList.add('is-hide');
-
-  setTimeout(() => {
-    window.location.href = link.href;
-  }, 450);
-});
+//   setTimeout(() => {
+//     window.location.href = link.href;
+//   }, 450);
+// });
