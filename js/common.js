@@ -1,4 +1,23 @@
 "use strict";
+(function () {
+    var container = document.querySelector('.container');
+    if (!container) return;
+    var button = container.querySelector('.btn-box button');
+    var content = container.querySelector('.more');
+    
+    if (button && content) {
+        button.addEventListener('click', function() {
+            content.classList.toggle('appear');
+            
+            if (content.classList.contains('appear')) {
+                this.textContent = this.dataset.openText || 'Close';
+            } else {
+                this.textContent = this.dataset.defaultText;
+            }
+        });
+    }
+})();
+
 const hamburger = document.getElementById("hamburger");
 const nav = document.getElementById("nav");
 const overlay = document.querySelector(".overlay");
@@ -40,6 +59,7 @@ navLinks.forEach(link => {
 overlay.addEventListener("click", () => {
   closeMenu();
 });
+
 //マウスストーカー
 const stalker = document.getElementById('mouse-stalker');
 let hovFlag = false;
@@ -60,13 +80,19 @@ for (let i = 0; i < linkElem.length; i++) {
     });
 }
 
-// フェードイン
-window.addEventListener('pageshow', () => {
-  document.body.classList.remove('is-hide');
-  document.body.classList.add('is-show');
+//今回は下の方がいいのかも？？
+  // フェード開始
+  console.log("fade out start");
+  e.preventDefault();
+
+  document.body.classList.remove('is-show');
+  document.body.classList.add('is-hide');
+
+  setTimeout(() => {
+    window.location.href = link.href;
+  }, 450);
 });
 
-// フェードアウト
 document.addEventListener('click', e => {
   const link = e.target.closest('a');
   if (!link) return;
@@ -74,12 +100,14 @@ document.addEventListener('click', e => {
   const href = link.getAttribute('href');
   if (!href) return;
 
-  // ① 同一ページ内リンクはフェードなし
-  if (link.hash && link.pathname === location.pathname) {
-  return;
-}
+  /* ハンバーガーメニュー内リンクは除外 */
+  if (
+    link.closest("#nav") ||
+    (link.hash && link.pathname === location.pathname)
+  ) {
+    return;
+  }
 
-  // ② tel / mail / blank は除外
   if (
     link.target === '_blank' ||
     href.startsWith('tel:') ||
@@ -87,3 +115,13 @@ document.addEventListener('click', e => {
   ) {
     return;
   }
+
+  e.preventDefault();
+
+  document.body.classList.remove('is-show');
+  document.body.classList.add('is-hide');
+
+  setTimeout(() => {
+    window.location.href = link.href;
+  }, 450);
+});
