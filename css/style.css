@@ -83,12 +83,6 @@ table {
   height: 100px;
   transition: 0.2s;
 }
-/*ホバー時*/
-.stalker.is_active {
-  transform: scale(2);
-  background: cyan;
-}
-
 /*フェードインフェードアウト
 body{
   opacity: 0;
